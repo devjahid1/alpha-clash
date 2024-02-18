@@ -23,8 +23,11 @@ function handleKeyboardKeyUpEvent(event){
         const currentLifeElement=document.getElementById('current-life');
         const currentLifeText = currentLifeElement.innerText;
         const currentLife = parseInt(currentLifeText)
-        const newLife = currentLife -1;
-        currentLifeElement.innerText = newLife
+        const updatedLife = currentLife -1;
+        currentLifeElement.innerText = updatedLife
+        if(updatedLife === 0){
+            gameOver();
+        }
     }
 }
 document.addEventListener('keyup', handleKeyboardKeyUpEvent);
@@ -40,6 +43,13 @@ function continueGame(){
 }
 function play(){
     hiddenElementById('home-screen');
+    hiddenElementById('final-score')
     showElementById('play-ground');
+    
     continueGame();
+}
+
+function gameOver(){
+    hiddenElementById('play-ground');
+    showElementById('final-score')
 }
